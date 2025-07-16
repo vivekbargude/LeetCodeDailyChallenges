@@ -57,6 +57,7 @@
 //3.Pick all alternate values
 
 class Solution {
+    //TC -> O(N)
     public int maximumLength(int[] nums) {
 
         int cntEven = 0; //for even subsequence
