@@ -80,26 +80,64 @@
 // }
 
 
-// Approach-2 - Bottom Up
-// T.C : O(n * (forgt - delay))
-// S.C : O(n)
+// // Approach-2 - Bottom Up
+// // T.C : O(n * (forgt - delay))
+// // S.C : O(n)
+// class Solution {
+//     public int peopleAwareOfSecret(int n, int delay, int forget) {
+//         int MOD = (int)1e9 + 7;
+//         int[] t = new int[n + 1]; // t[day] = number of people who learn the secret on "day"
+
+//         t[1] = 1;
+
+//         for (int day = 2; day <= n; day++) {
+//             long count = 0;
+//             for (int prev = day - forget + 1; prev <= day - delay; prev++) {
+//                 if (prev > 0) {
+//                     count = (count + t[prev]) % MOD;
+//                 }
+//             }
+//             t[day] = (int)count;
+//         }
+
+//         int result = 0;
+//         for (int day = n - forget + 1; day <= n; day++) {
+//             if (day > 0) {
+//                 result = (result + t[day]) % MOD;
+//             }
+//         }
+
+//         return result;
+//     }
+// }
+
+
+//Approach-3 - Bottom Up Optimised using sliding window
+//T.C : O(n)
+//S.C : O(n)
 class Solution {
+    int MOD = 1_000_000_007;
+
     public int peopleAwareOfSecret(int n, int delay, int forget) {
-        int MOD = (int)1e9 + 7;
-        int[] t = new int[n + 1]; // t[day] = number of people who learn the secret on "day"
+        int[] t = new int[n + 1];
+        // t[day] = number of people who first learn the secret on "day"
 
         t[1] = 1;
+        long count = 0; // number of people who can share the secret today
 
         for (int day = 2; day <= n; day++) {
-            long count = 0;
-            for (int prev = day - forget + 1; prev <= day - delay; prev++) {
-                if (prev > 0) {
-                    count = (count + t[prev]) % MOD;
-                }
+            // people who become eligible to share on this day
+            if (day - delay > 0) {
+                count = (count + t[day - delay]) % MOD;
             }
-            t[day] = (int)count;
+            // people who forget on this day
+            if (day - forget > 0) {
+                count = (count - t[day - forget] + MOD) % MOD;
+            }
+            t[day] = (int) count; // number of people who learn on this day
         }
 
+        // count the people who still remember on day n
         int result = 0;
         for (int day = n - forget + 1; day <= n; day++) {
             if (day > 0) {
