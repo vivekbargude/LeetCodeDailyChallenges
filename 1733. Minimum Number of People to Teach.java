@@ -39,6 +39,9 @@
 //Approach (Greedily picking the mostKnown language among the sadUsers (those who cannpt talk to their friends))
 //T.C : O(m*n)
 //S.C : O(m+n)
+
+import java.util.*;
+
 class Solution {
     public int minimumTeachings(int n, int[][] languages, int[][] friendships) {
         Set<Integer> sadUsers = new HashSet<>(); // users who can't talk to their friend
