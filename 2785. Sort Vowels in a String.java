@@ -29,6 +29,10 @@
 import java.util.*;
 
 class Solution {
+
+//Approach-1 (Separate string create and sort)
+//T.C : O(nlog)
+
     // public String sortVowels(String s) {
     //     int n = s.length();
     //     char[] str = s.toCharArray();
@@ -61,6 +65,9 @@ class Solution {
     //     return new String(str);
     // }
 
+
+//Approach-2 (Without sorting. Counting the vowels - counting sort)
+//T.C : O(n)
     private boolean isVowel(char ch) {
         ch = Character.toLowerCase(ch);
         return (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u');
