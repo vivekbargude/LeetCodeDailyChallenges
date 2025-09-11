@@ -29,35 +29,68 @@
 import java.util.*;
 
 class Solution {
+    // public String sortVowels(String s) {
+    //     int n = s.length();
+    //     char[] str = s.toCharArray();
+    //     char[] vowel = new char[n];
+    //     int j = 0;
+
+    //     Set<Character> set = new HashSet<>(Arrays.asList(
+    //         'a','e','i','o','u','A','E','I','O','U'
+    //     ));
+
+    //     // Collect vowels and mark positions
+    //     for (int i = 0; i < n; i++) {
+    //         if (set.contains(str[i])) {
+    //             vowel[j++] = str[i];
+    //             str[i] = '#'; // use a safe marker, not space
+    //         }
+    //     }
+
+    //     // Sort only the part of the array that was filled
+    //     Arrays.sort(vowel, 0, j);
+
+    //     // Put vowels back in sorted order
+    //     int k = 0;
+    //     for (int i = 0; i < n; i++) {
+    //         if (str[i] == '#') {
+    //             str[i] = vowel[k++];
+    //         }
+    //     }
+
+    //     return new String(str);
+    // }
+
+    private boolean isVowel(char ch) {
+        ch = Character.toLowerCase(ch);
+        return (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u');
+    }
+
     public String sortVowels(String s) {
-        int n = s.length();
-        char[] str = s.toCharArray();
-        char[] vowel = new char[n];
-        int j = 0;
+        Map<Character, Integer> map = new HashMap<>();
 
-        Set<Character> set = new HashSet<>(Arrays.asList(
-            'a','e','i','o','u','A','E','I','O','U'
-        ));
-
-        // Collect vowels and mark positions
-        for (int i = 0; i < n; i++) {
-            if (set.contains(str[i])) {
-                vowel[j++] = str[i];
-                str[i] = '#'; // use a safe marker, not space
+        for (char ch : s.toCharArray()) {
+            if (isVowel(ch)) {
+                map.put(ch, map.getOrDefault(ch, 0) + 1);
             }
         }
 
-        // Sort only the part of the array that was filled
-        Arrays.sort(vowel, 0, j);
+        String vowels = "AEIOUaeiou";
+        int j = 0; // pointing to temp (current vowel)
 
-        // Put vowels back in sorted order
-        int k = 0;
-        for (int i = 0; i < n; i++) {
-            if (str[i] == '#') {
-                str[i] = vowel[k++];
+        char[] resultArray = s.toCharArray();
+
+        for (int i = 0; i < s.length(); i++) {
+            if (isVowel(s.charAt(i))) {
+                while (map.getOrDefault(vowels.charAt(j), 0) == 0) {
+                    j++;
+                }
+
+                resultArray[i] = vowels.charAt(j);
+                map.put(vowels.charAt(j), map.get(vowels.charAt(j)) - 1);
             }
         }
 
-        return new String(str);
+        return new String(resultArray);
     }
 }
