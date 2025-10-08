@@ -34,7 +34,7 @@
 // 1 <= spells[i], potions[i] <= 105
 // 1 <= success <= 1010
 
-
+import java.util.Arrays;
 
 class Solution {
     public int[] successfulPairs(int[] spells, int[] potions, long success) {
