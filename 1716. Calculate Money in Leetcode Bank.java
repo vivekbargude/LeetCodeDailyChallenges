@@ -4,8 +4,6 @@
 
 // Given n, return the total amount of money he will have in the Leetcode bank at the end of the nth day.
 
- 
-
 // Example 1:
 
 // Input: n = 4
