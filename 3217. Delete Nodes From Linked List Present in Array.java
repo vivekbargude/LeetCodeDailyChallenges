@@ -60,38 +60,38 @@
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
-class Solution {
-    public ListNode modifiedList(int[] nums, ListNode head) {
-        int n = nums.length;
-        Set<Integer> set = new HashSet<>();
-        for(int num : nums)
-        set.add(num);
+// class Solution {
+//     public ListNode modifiedList(int[] nums, ListNode head) {
+//         int n = nums.length;
+//         Set<Integer> set = new HashSet<>();
+//         for(int num : nums)
+//         set.add(num);
 
-        if(head==null)
-        return head;
+//         if(head==null)
+//         return head;
 
-        while(head!=null && set.contains(head.val))
-        head=head.next;
+//         while(head!=null && set.contains(head.val))
+//         head=head.next;
 
-        if(head == null || head.next == null )
-        return head;
+//         if(head == null || head.next == null )
+//         return head;
 
-        ListNode prev = head;
-        ListNode curr = head.next;
+//         ListNode prev = head;
+//         ListNode curr = head.next;
 
-        while(curr!=null){
-            while(curr!=null&&set.contains(curr.val)){
-                prev.next=curr.next;
-                curr=curr.next;
-            }
+//         while(curr!=null){
+//             while(curr!=null&&set.contains(curr.val)){
+//                 prev.next=curr.next;
+//                 curr=curr.next;
+//             }
 
-            if(curr!=null)
-            curr=curr.next;
+//             if(curr!=null)
+//             curr=curr.next;
 
 
-            prev=prev.next;
-        }
+//             prev=prev.next;
+//         }
 
-        return head;
-    }
-}
+//         return head;
+//     }
+// }
