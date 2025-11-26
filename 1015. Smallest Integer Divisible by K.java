@@ -30,7 +30,7 @@
 class Solution {
     public int smallestRepunitDivByK(int k) {
         if(k % 2 == 0 || k % 5 == 0) return -1;
-        int rem = 1 % k, len = 1;2435. Paths in Matrix Whose Sum Is Divisible by K
+        int rem = 1 % k, len = 1;
         while(rem > 0) {
             rem = (rem * 10 + 1) % k;
             len++;
